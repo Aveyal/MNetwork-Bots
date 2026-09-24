@@ -1,0 +1,15 @@
+#!/bin/sh
+
+PIDFILE="main.pid"
+
+# If no PID file, fail
+[ -f "$PIDFILE" ] || exit 1
+
+PID=$(cat "$PIDFILE")
+
+# Check if process exists
+if kill -0 "$PID" 2>/dev/null; then
+    exit 0
+else
+    exit 1
+fi
